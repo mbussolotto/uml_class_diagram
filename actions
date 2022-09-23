@@ -156,4 +156,6 @@ digraph G {
         SaltApi -> ActionGenerator [arrowhead=diamond]
         SaltUtils -> ActionGenerator [arrowhead=diamond]
         
+        SaltApi -> SaltKeyUtils [arrowhead=diamond]
+
 }
