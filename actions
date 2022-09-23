@@ -157,12 +157,4 @@ digraph G {
         SaltApi -> ActionGenerator [arrowhead=diamond]
         SaltUtils -> ActionGenerator [arrowhead=diamond]
         
-        SaltApi -> ActionExecutor [arrowhead=diamond]
-        SaltUtils -> ActionExecutor [arrowhead=diamond]
-        TaskomaticApi -> ActionExecutor [arrowhead=diamond]
-        SaltSSHService -> ActionExecutor [arrowhead=diamond]
-        SaltActionChainGeneratorService -> ActionExecutor [arrowhead=diamond]
-        ActionGenerator -> ActionExecutor [arrowhead=diamond]
-        ActionHandler -> ActionExecutor [arrowhead=diamond]
-        
 }
