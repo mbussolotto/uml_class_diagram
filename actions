@@ -132,7 +132,6 @@ digraph G {
         SaltKeyUtils -> SaltServerActionService [arrowhead=diamond]
         TaskomaticApi -> SaltServerActionService [arrowhead=diamond]
 
-        TaskomaticApi -> SaltUtils [arrowhead=diamond]
         SystemQuery -> SaltUtils [arrowhead=diamond]
         SaltApi -> SaltUtils [arrowhead=diamond]
 
