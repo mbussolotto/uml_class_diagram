@@ -1,0 +1,168 @@
+digraph G {
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+
+        node [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                shape = "record"
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+        ]
+
+        QuartzJob [
+                label = "{QuartzJob| ...\l}"
+        ]
+
+        RhnJob [
+                label = "{RhnJob| ...\l}"
+        ]
+
+        RhnJavaJob [
+                label = "{RhnJavaJob| ...\l}"
+        ]
+
+        MinionActionExecutor [
+                label = "{MinionActionExecutor| ... \l}"
+        ]
+
+        SSHMinionActionExecutor [
+                label = "{SSHMinionActionExecutor| ...\l}"
+        ]
+        
+        ActionExecutor [
+                label = "{ActionExecutor| ...\l}"
+        ]
+        
+        SaltActionChainGeneratorService  [
+                label = "{SaltActionChainGeneratorService| + INSTANCE\l}"
+        ]
+        
+        SaltApi  [
+                label = "{SaltApi| ...\l}"
+        ]
+        
+        SaltUtils  [
+                label = "{SaltUtils| ...\l}"
+        ]
+        
+        TaskomaticApi  [
+                label = "{TaskomaticApi| ...\l}"
+        ]
+        
+        SaltSSHService  [
+                label = "{SaltSSHService| ...\l}"
+        ]
+        
+        ActionGenerator  [
+                label = "{ActionGenerator| ...\l}"
+        ]
+        
+        ActionHandler  [
+                label = "{ActionHandler| ...\l}"
+        ]
+        
+        SaltServerActionService  [
+                label = "{SaltServerActionService| ...\l}"
+        ]
+        
+        SaltKeyUtils  [
+                label = "{SaltKeyUtils| ...\l}"
+        ]
+        
+        JobReturnEventMessageAction  [
+                label = "{JobReturnEventMessageAction| ...\l}"
+        ]
+        
+        MessageAction  [
+                label = "{MessageAction| ...\l}"
+        ]
+        
+        SSHPushWorkerSalt  [
+                label = "{SSHPushWorkerSalt| ...\l}"
+        ]
+        
+        QueueWorker  [
+                label = "{QueueWorker| ...\l}"
+        ]
+        
+        TaskQueue  [
+                label = "{TaskQueue| ...\l}"
+        ]
+        
+        SystemQuery  [
+                label = "{SystemQuery| ...\l}"
+        ]
+                
+        SystemSummary  [
+                label = "{SystemSummary| ...\l}"
+        ]
+        
+        SaltClient  [
+                label = "{SaltClient| ...\l}"
+        ]
+        
+        Executor  [
+                label = "{Executor| ...\l}"
+        ]                
+        RhnJob -> QuartzJob  [arrowhead=empty]
+        
+        RhnJavaJob -> RhnJob [arrowhead=empty]
+        
+        MinionActionExecutor -> RhnJavaJob [arrowhead=empty]
+        SSHMinionActionExecutor -> RhnJavaJob [arrowhead=empty]
+        
+        ActionExecutor -> MinionActionExecutor [arrowhead=diamond]
+        
+        SaltActionChainGeneratorService -> ActionExecutor [arrowhead=diamond]
+        SaltApi -> ActionExecutor [arrowhead=diamond]
+        SaltUtils -> ActionExecutor [arrowhead=diamond]
+        TaskomaticApi -> ActionExecutor [arrowhead=diamond]
+        SaltSSHService -> ActionExecutor [arrowhead=diamond]
+        ActionGenerator -> ActionExecutor [arrowhead=diamond]
+        ActionHandler -> ActionExecutor [arrowhead=diamond]
+
+        SaltActionChainGeneratorService -> SaltServerActionService [arrowhead=diamond]
+        SaltApi -> SaltServerActionService [arrowhead=diamond]
+        SaltSSHService -> SaltServerActionService [arrowhead=diamond]
+        SaltUtils -> SaltServerActionService [arrowhead=diamond]
+        SaltKeyUtils -> SaltServerActionService [arrowhead=diamond]
+        TaskomaticApi -> SaltServerActionService [arrowhead=diamond]
+
+        TaskomaticApi -> SaltUtils [arrowhead=diamond]
+        SystemQuery -> SaltUtils [arrowhead=diamond]
+        SaltApi -> SaltUtils [arrowhead=diamond]
+
+        JobReturnEventMessageAction -> MessageAction [style=dashed arrowhead=empty]
+        
+        SSHPushWorkerSalt -> QueueWorker [arrowhead=empty]
+
+        SystemSummary -> SSHPushWorkerSalt [arrowhead=diamond]
+        TaskQueue -> SSHPushWorkerSalt [arrowhead=diamond]
+        SaltApi -> SSHPushWorkerSalt [arrowhead=diamond]
+        SaltSSHService -> SSHPushWorkerSalt [arrowhead=diamond]
+        SaltUtils -> SSHPushWorkerSalt [arrowhead=diamond]
+
+        SaltClient -> SaltSSHService [arrowhead=diamond]
+        Executor -> SaltSSHService [arrowhead=diamond]
+        SaltActionChainGeneratorService -> SaltSSHService [arrowhead=diamond]
+
+        SaltUtils -> ActionHandler [arrowhead=diamond]
+        SaltKeyUtils -> ActionHandler [arrowhead=diamond]
+        ActionExecutor -> ActionHandler [arrowhead=diamond]
+
+        SaltApi -> ActionGenerator [arrowhead=diamond]
+        SaltUtils -> ActionGenerator [arrowhead=diamond]
+        
+        SaltApi -> ActionExecutor [arrowhead=diamond]
+        SaltUtils -> ActionExecutor [arrowhead=diamond]
+        TaskomaticApi -> ActionExecutor [arrowhead=diamond]
+        SaltSSHService -> ActionExecutor [arrowhead=diamond]
+        SaltActionChainGeneratorService -> ActionExecutor [arrowhead=diamond]
+        ActionGenerator -> ActionExecutor [arrowhead=diamond]
+        ActionHandler -> ActionExecutor [arrowhead=diamond]
+        
+}
