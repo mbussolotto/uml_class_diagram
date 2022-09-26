@@ -272,5 +272,9 @@ digraph G {
         
         TaskQueue -> QueueDriver  [arrowhead=none]
         TaskQueue -> RhnQueueJob  [arrowhead=none]
+        
+        SaltService -> SystemQuery [arrowhead=empty style=dashed]
+        SaltService -> SaltApi [arrowhead=empty style=dashed]
+        SaltSSHService -> SaltService [arrowhead=diamond]
 
 }
