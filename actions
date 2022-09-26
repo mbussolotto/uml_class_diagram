@@ -107,10 +107,102 @@ digraph G {
         
         Executor  [
                 label = "{Executor| ...\l}"
-        ]                
-        RhnJob -> QuartzJob  [arrowhead=empty]
+        ] 
         
-        RhnJavaJob -> RhnJob [arrowhead=empty]
+        TaskoJob  [
+                label = "{TaskoJob| ...\l}"
+        ] 
+
+        RhnQueueJob  [
+                label = "{RhnQueueJob| ...\l}"
+        ] 
+
+        ChannelRepodata  [
+                label = "{ChannelRepodata| ...\l}"
+        ] 
+
+        SSHPush  [
+                label = "{SSHPush| ...\l}"
+        ] 
+
+        ErrataQueue  [
+                label = "{ErrataQueue| ...\l}"
+        ] 
+
+        HubReportDbUpdateTask  [
+                label = "{HubReportDbUpdateTask| ...\l}"
+        ] 
+
+        ErrataCacheTask  [
+                label = "{ErrataCacheTask| ...\l}"
+        ] 
+        
+        RhnJobFactory  [
+                label = "{RhnJobFactory| ...\l}"
+        ] 
+        
+        SSHPushWorker  [
+                label = "{SSHPushWorker| ...\l}"
+        ] 
+        
+        ChannelRepodataWorker  [
+                label = "{ChannelRepodataWorker| ...\l}"
+        ] 
+        
+        HubReportDbUpdateWorker  [
+                label = "{HubReportDbUpdateWorker| ...\l}"
+        ]
+
+        ErrataCacheWorker  [
+                label = "{ErrataCacheWorker| ...\l}"
+        ]
+        HubReportDbUpdateTask  [
+                label = "{HubReportDbUpdateTask| ...\l}"
+        ]
+        HubReportDbUpdateDriver  [
+                label = "{HubReportDbUpdateDriver| ...\l}"
+        ]
+        ErrataCacheDriver  [
+                label = "{ErrataCacheDriver| ...\l}"
+        ]
+        ErrataQueueDriver  [
+                label = "{ErrataQueueDriver| ...\l}"
+        ]
+        
+        ChannelRepodataDriver  [
+                label = "{ChannelRepodataDriver| ...\l}"
+        ]
+        
+        SSHPushDriver  [
+                label = "{SSHPushDriver| ...\l}"
+        ]        
+        
+
+        RhnJob -> QuartzJob  [arrowhead=empty style=dashed]
+        
+        TaskoJob -> QuartzJob  [arrowhead=empty style=dashed]
+        
+        RhnJobFactory -> TaskoJob [arrowhead=none ]
+
+        RhnJavaJob -> RhnJob [arrowhead=empty style=dashed]
+        
+        RhnQueueJob -> RhnJob [arrowhead=empty style=dashed]
+
+        SSHPush -> RhnQueueJob [arrowhead=empty ]
+        ChannelRepodata -> RhnQueueJob [arrowhead=empty ]
+        ErrataQueue -> RhnQueueJob [arrowhead=empty ]
+        ErrataCacheTask -> RhnQueueJob [arrowhead=empty ]
+        HubReportDbUpdateTask -> RhnQueueJob [arrowhead=empty ]
+
+        QueueWorker -> Runnable [arrowhead=empty style=dashed]
+        
+        SSHPushWorker -> QueueWorker [arrowhead=empty style=dashed]
+        ChannelRepodataWorker -> QueueWorker [arrowhead=empty style=dashed]
+        HubReportDbUpdateWorker -> QueueWorker [arrowhead=empty style=dashed]
+        ErrataCacheWorker -> QueueWorker [arrowhead=empty style=dashed]
+        ErrataQueueWorker -> QueueWorker [arrowhead=empty style=dashed]
+
+        
         
         MinionActionExecutor -> RhnJavaJob [arrowhead=empty]
         SSHMinionActionExecutor -> RhnJavaJob [arrowhead=empty]
@@ -137,7 +229,7 @@ digraph G {
 
         JobReturnEventMessageAction -> MessageAction [style=dashed arrowhead=empty]
         
-        SSHPushWorkerSalt -> QueueWorker [arrowhead=empty]
+        SSHPushWorkerSalt -> QueueWorker [arrowhead=empty style=dashed]
 
         SystemSummary -> SSHPushWorkerSalt [arrowhead=diamond]
         TaskQueue -> SSHPushWorkerSalt [arrowhead=diamond]
@@ -157,5 +249,28 @@ digraph G {
         SaltUtils -> ActionGenerator [arrowhead=diamond]
         
         SaltApi -> SaltKeyUtils [arrowhead=diamond]
+
+        HubReportDbUpdateDriver -> QueueDriver  [arrowhead=empty style=dashed]
+        ErrataCacheDriver -> QueueDriver  [arrowhead=empty style=dashed]
+        ErrataQueueDriver -> QueueDriver  [arrowhead=empty style=dashed]
+        ChannelRepodataDriver -> QueueDriver  [arrowhead=empty style=dashed]
+        SSHPushDriver -> QueueDriver  [arrowhead=empty style=dashed]
+
+        HubReportDbUpdateDriver -> HubReportDbUpdateWorker  [arrowhead=none]
+        ErrataCacheDriver -> ErrataCacheWorker  [arrowhead=none]
+        ChannelRepodataDriver -> ChannelRepodataWorker  [arrowhead=none]
+        ErrataQueueDriver -> ErrataQueueWorker  [arrowhead=none]
+
+        TaskQueue -> QueueDriver  [arrowhead=none]
+
+        TaskQueue -> ChannelRepodataWorker [arrowhead=diamond]
+        TaskQueue -> HubReportDbUpdateWorker [arrowhead=diamond]
+        TaskQueue -> ErrataQueueWorker [arrowhead=diamond]
+        TaskQueue -> ErrataCacheWorker [arrowhead=diamond]
+        TaskQueue -> SSHPushWorker [arrowhead=diamond]
+        TaskQueue -> SSHPushWorkerSalt [arrowhead=diamond]
+        
+        TaskQueue -> QueueDriver  [arrowhead=none]
+        TaskQueue -> RhnQueueJob  [arrowhead=none]
 
 }
